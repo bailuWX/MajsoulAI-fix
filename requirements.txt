@@ -1,0 +1,8 @@
+mitmproxy==6.0.2
+numpy==1.21.4
+opencv_python==4.5.4.60
+Pillow==8.4.0
+PyAutoGUI==0.9.53
+selenium==4.1.0
+torch==1.10.0+cu113
+torchvision==0.11.1+cu113
