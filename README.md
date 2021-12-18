@@ -1,8 +1,9 @@
 # MajsoulAI-fix
  
 
-
- 使用了大佬的代码, https://github.com/747929791/MajsoulAI
+ 雀魂麻将ai,雀魂麻将助手,雀魂麻将机器学习
+ 
+ 修改了大佬的代码, https://github.com/747929791/MajsoulAI
 
  更新了一些小bug,因为大佬的代码很久都没更新了,无法正常启动
 
