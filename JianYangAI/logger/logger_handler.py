@@ -47,14 +47,12 @@ class Logger:
         try:  # 复制一份最新的日志文件到我自己的log目录
             dir2 = "Z:\\logs"
             if os.path.isdir(dir2):
-                logger1 = logging.getLogger('{}_{}'.format(self.log_id, self.ai_id))
+                logger1 = logger
                 logger1.setLevel(logging.DEBUG)
-                ch1 = logging.StreamHandler()
+                ch1 = ch
                 ch1.setLevel(logging.DEBUG)
-                file_name = '{}_{}.log'.format(self.ai_id, datetime.datetime.now().strftime('%Y-%m-%d_%H_%M_%S'))
                 fh1 = logging.FileHandler(dir2+"\\output.log")
                 fh1.setLevel(logging.DEBUG)
-                formatter = logging.Formatter('%(asctime)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
                 ch1.setFormatter(formatter)
                 fh1.setFormatter(formatter)
                 logger.addHandler(ch1)

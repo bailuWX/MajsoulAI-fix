@@ -16,3 +16,9 @@
 # t1 = get_tile_china(list)
 #
 # print(t1)
+import os
+
+dir2 = "Z:\\logs"
+# if os.path.isdir(dir2):
+print(os.path.isdir(dir2))
+
