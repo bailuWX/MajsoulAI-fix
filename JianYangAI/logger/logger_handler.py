@@ -21,7 +21,6 @@ class Logger:
         self._set_up_logger()
         self.lg = logging.getLogger('{}_{}'.format(log_id, ai_id))
 
-    
     def _set_up_logger(self):
         root_dir = os.path.dirname(os.path.abspath("__file__"))
         logs_directory = root_dir + "/logger/{}/".format(self.log_id)
@@ -36,12 +35,6 @@ class Logger:
         ch.setLevel(logging.DEBUG)
         file_name = '{}_{}.log'.format(self.ai_id, datetime.datetime.now().strftime('%Y-%m-%d_%H_%M_%S'))
         fh = logging.FileHandler(raw_dir + file_name)
-        try:
-            file_name2 = "z:\\output.log"
-            if os.path.isfile(file_name2):
-                logging.FileHandler(file_name2)
-        except Exception:
-            pass
         fh.setLevel(logging.DEBUG)
         formatter = logging.Formatter('%(asctime)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
         ch.setFormatter(formatter)
@@ -51,28 +44,54 @@ class Logger:
         self.scores_path = logs_directory + "{}_result.txt".format(self.ai_id)
         self.rank_path = logs_directory + "ranks.txt"
 
-    
+        try:  # 复制一份最新的日志文件到我自己的log目录
+            dir2 = "Z:\\logs"
+            if os.path.isdir(dir2):
+                new_file = find_new_file(raw_dir)
+                f = open(new_file, 'rb')
+                for i in f:
+                    offer = -10
+                    while 1:
+                        f.seek(offer, 2)
+                        data = f.readlines()
+                        if len(data) > 1:
+                            with open(dir2 + "/output.log", "a") as f:
+                                f.write(data[-1] + '\r')
+                        offer *= 2
+        except Exception:
+            pass
+
     def add_line(self, msg):
-        msg=msg.encode('gbk',errors='replace').decode(encoding='gbk',errors='replace')
+        msg = msg.encode('gbk', errors='replace').decode(encoding='gbk', errors='replace')
         self.lg.info(msg)
 
-    
     def flush_buffer(self):
         self.add_line('    ' + '-' * 50)
         for bf_msg in self.logger_buffer:
             self.add_line(bf_msg)
         self.logger_buffer = []
 
-    
     def add_round_end_result(self, msg):
-        msg=msg.encode('gbk',errors='replace').decode(encoding='gbk',errors='replace')
+        msg = msg.encode('gbk', errors='replace').decode(encoding='gbk', errors='replace')
         open(self.scores_path, 'a').write(msg)
 
-    
     def add_game_end_result(self, rk):
         if os.path.isfile(self.rank_path):
             ranks = [int(r.split(':')[1]) for r in open(self.rank_path, 'r').read().split("\n")[0:4]]
         else:
             ranks = [0] * 4
         ranks[rk] += 1
-        open(self.rank_path, 'w').write("".join(["Rank {}: {} : {:.2f}%\n".format(i, ranks[i - 1], 100*ranks[i-1]/sum(ranks)) for i in range(1, 5)]))
+        open(self.rank_path, 'w').write("".join(
+            ["Rank {}: {} : {:.2f}%\n".format(i, ranks[i - 1], 100 * ranks[i - 1] / sum(ranks)) for i in range(1, 5)]))
+
+
+# 输入目录路径，输出最新文件完整路径
+def find_new_file(dir):
+    '''查找目录下最新的文件'''
+    file_lists = os.listdir(dir)
+    file_lists.sort(key=lambda fn: os.path.getmtime(dir + "\\" + fn)
+    if not os.path.isdir(dir + "\\" + fn) else 0)
+    print('最新的文件为： ' + file_lists[-1])
+    file = os.path.join(dir, file_lists[-1])
+    print('完整路径：', file)
+    return file
