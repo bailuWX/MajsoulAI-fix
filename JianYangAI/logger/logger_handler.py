@@ -47,17 +47,18 @@ class Logger:
         try:  # 复制一份最新的日志文件到我自己的log目录
             dir2 = "Z:\\logs"
             if os.path.isdir(dir2):
-                new_file = find_new_file(raw_dir)
-                f = open(new_file, 'rb')
-                for i in f:
-                    offer = -10
-                    while 1:
-                        f.seek(offer, 2)
-                        data = f.readlines()
-                        if len(data) > 1:
-                            with open(dir2 + "/output.log", "a") as f1:
-                                f1.write(data[-1].decode("gbk") + '\r')
-                        offer *= 2
+                logger1 = logging.getLogger('{}_{}'.format(self.log_id, self.ai_id))
+                logger1.setLevel(logging.DEBUG)
+                ch1 = logging.StreamHandler()
+                ch1.setLevel(logging.DEBUG)
+                file_name = '{}_{}.log'.format(self.ai_id, datetime.datetime.now().strftime('%Y-%m-%d_%H_%M_%S'))
+                fh1 = logging.FileHandler(dir2+"\\output.log")
+                fh1.setLevel(logging.DEBUG)
+                formatter = logging.Formatter('%(asctime)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+                ch1.setFormatter(formatter)
+                fh1.setFormatter(formatter)
+                logger.addHandler(ch1)
+                logger.addHandler(fh1)
         except Exception:
             pass
 
