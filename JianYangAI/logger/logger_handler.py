@@ -55,8 +55,8 @@ class Logger:
                 fh1.setLevel(logging.DEBUG)
                 ch1.setFormatter(formatter)
                 fh1.setFormatter(formatter)
-                logger.addHandler(ch1)
-                logger.addHandler(fh1)
+                logger1.addHandler(ch1)
+                logger1.addHandler(fh1)
         except Exception:
             pass
 
