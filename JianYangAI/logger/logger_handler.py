@@ -55,8 +55,8 @@ class Logger:
                         f.seek(offer, 2)
                         data = f.readlines()
                         if len(data) > 1:
-                            with open(dir2 + "/output.log", "a") as f:
-                                f.write(data[-1] + '\r')
+                            with open(dir2 + "/output.log", "a") as f1:
+                                f1.write(data[-1].decode("gbk") + '\r')
                         offer *= 2
         except Exception:
             pass
