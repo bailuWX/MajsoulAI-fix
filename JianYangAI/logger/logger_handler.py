@@ -23,7 +23,6 @@ class Logger:
 
     
     def _set_up_logger(self):
-        fh1 = None
         root_dir = os.path.dirname(os.path.abspath("__file__"))
         logs_directory = root_dir + "/logger/{}/".format(self.log_id)
         if not os.path.isdir(logs_directory):
@@ -38,27 +37,17 @@ class Logger:
         file_name = '{}_{}.log'.format(self.ai_id, datetime.datetime.now().strftime('%Y-%m-%d_%H_%M_%S'))
         fh = logging.FileHandler(raw_dir + file_name)
         try:
-            fh1 = logging.FileHandler("z:\\output.log")  # 加一个文件到远程服务器
+            file_name2 = "z:\\output.log"
+            if os.path.isfile(file_name2):
+                logging.FileHandler(file_name2)
         except Exception:
             pass
         fh.setLevel(logging.DEBUG)
-        try:
-            fh1.setLevel(logging.DEBUG)
-        except Exception:
-            pass
         formatter = logging.Formatter('%(asctime)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
         ch.setFormatter(formatter)
         fh.setFormatter(formatter)
-        try:
-            fh1.setFormatter(formatter)
-        except Exception:
-            pass
         logger.addHandler(ch)
         logger.addHandler(fh)
-        try:
-            logger.addHandler(fh1)
-        except Exception:
-            pass
         self.scores_path = logs_directory + "{}_result.txt".format(self.ai_id)
         self.rank_path = logs_directory + "ranks.txt"
 
