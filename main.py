@@ -156,6 +156,7 @@ class AIWrapper(sdk.GUIInterface, sdk.MajsoulHandler):
             op = d['opcode']
             if op == 'D':
                 dt21 = time.time() - self.lastSendTime
+                # 打印ai思考的时间,出牌,碰杠胡都记录到磁盘当中,如果时间太久才会保存一份副本!
                 print("ai思考出牌: ", round(dt21, 2), "秒")
                 if dt21 > 5.0:
                     time11 = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())

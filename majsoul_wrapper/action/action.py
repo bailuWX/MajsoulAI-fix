@@ -233,7 +233,7 @@ class GUIInterface:
             if len(L) == 0:
                 L = self._getHandTiles()
                 time.sleep(0.2)
-        print("扫描手牌用时: ", round((time.time() - time1), 2), " 秒")
+        print("扫描手牌用时: ", round((time.time() - time1), 2), " 秒")   # 计算一下识别麻将的时间,如果时间异常,及时处理
         len1 = len(L)
         list_tile = [tile]
         print("Ai想出：" + get_format_tile(list_tile)[0] + ", 手牌数量:" + str(len1) + "-1")
@@ -242,13 +242,14 @@ class GUIInterface:
             strlist1 = L[0:len2]
             strlist2 = L[len2:len1]
             print("当前手上:")
-            print(get_format_tile(get_tile_list(strlist1)))
+            print(get_format_tile(get_tile_list(strlist1)))   # 打印手上的牌,这样子出错了,可以及时定位错误!
             if len(strlist2) != 0:
                 print(get_format_tile(get_tile_list(strlist2)))
 
         for t, (x, y) in L:
             if t == tile:
                 print("找到牌了！" + get_format_tile(list_tile)[0] + " (" + str(x) + "," + str(y) + ")")
+                # 打印一下这个牌在chrome可视区域的坐标!
                 pyautogui.moveTo(x=x, y=y)
                 time.sleep(0.3)
                 pyautogui.click(x=x, y=y, button='left')
@@ -258,9 +259,9 @@ class GUIInterface:
                 return True
         raise Exception(
             'GUIInterface.discardTile1 tile not found. L:', L, 'tile:', tile)
-        return False
+        return False   # 不懂这句代码有什么意义,永远无法达到啊....
 
-    def actionDiscardTile2(self, tile: str):
+    def actionDiscardTile2(self, tile: str):  # 备用方案,不过我没用
         print("找不到ai要的牌,正在随机出牌:")
         time1 = time.time()
         L = self._getHandTiles()
