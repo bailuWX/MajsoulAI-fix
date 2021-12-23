@@ -89,7 +89,7 @@ class LiqiProto:
                     pb, proto_domain['responseType']))  # wait response
             elif msg_type == MsgType.Res:
                 assert(len(msg_block[0]['data']) == 0)
-                assert(msg_id in self.res_type)
+                # assert(msg_id in self.res_type)
                 method_name, liqi_pb2_res = self.res_type.pop(msg_id)
                 proto_obj = liqi_pb2_res.FromString(msg_block[1]['data'])
                 dict_obj = MessageToDict(proto_obj)
