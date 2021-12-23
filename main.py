@@ -502,7 +502,7 @@ class AIWrapper(sdk.GUIInterface, sdk.MajsoulHandler):
                 tile = self.cardRecorder.majsoul2tenhou(tiles)[0]
             t4 = tile % 4
             base = tile // 4  # 最小牌tile34
-            assert (base in self.pengInfo)
+            # assert (base in self.pengInfo)
             base_and_called = self.pengInfo[base] >> 9
             from_whom = self.pengInfo[base] & 3
             m = (base_and_called << 9) + (t4 << 5) + (1 << 4) + from_whom
