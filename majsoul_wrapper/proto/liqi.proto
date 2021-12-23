@@ -114,9 +114,13 @@ message NotifyAccountLogout {
 
 message NotifyAnnouncementUpdate {
 
-    repeated Announcement announcements = 1;
-    repeated uint32 sort = 2;
-    string lang = 3;
+    repeated AnnouncementUpdate update_list = 1;
+
+    message AnnouncementUpdate {
+
+        string lang = 1;
+        string platform = 2;
+    }
 }
 
 message NotifyNewMail {
@@ -1187,6 +1191,7 @@ message Character {
     uint32 skin = 5;
     bool is_upgraded = 6;
     repeated uint32 extra_emoji = 7;
+    repeated uint32 rewarded_level = 8;
 }
 
 message BuyRecord {
@@ -2008,6 +2013,7 @@ service Lobby {
     rpc enterArena (ReqEnterArena) returns (ResCommon);
     rpc receiveArenaReward (ReqArenaReward) returns (ResArenaReward);
     rpc fetchOBToken (ReqFetchOBToken) returns (ResFetchOBToken);
+    rpc receiveCharacterRewards (ReqReceiveCharacterRewards) returns (ResReceiveCharacterRewards);
 }
 
 message ResConnectionInfo {
@@ -2637,6 +2643,7 @@ message ReqComposeShard {
 message ReqFetchAnnouncement {
 
     string lang = 1;
+    string platform = 2;
 }
 
 message ResAnnouncement {
@@ -4392,6 +4399,24 @@ message ResFetchOBToken {
     uint32 start_time = 5;
 }
 
+message ReqReceiveCharacterRewards {
+
+    uint32 character_id = 1;
+    uint32 level = 2;
+}
+
+message ResReceiveCharacterRewards {
+
+    Error error = 1;
+    repeated RewardItem items = 2;
+
+    message RewardItem {
+
+        uint32 id = 1;
+        uint32 count = 2;
+    }
+}
+
 message ActionMJStart {
 }
 
@@ -4438,7 +4463,6 @@ message ActionNewRound {
     repeated NewRoundOpenedTiles opens = 15;
     MuyuInfo muyu = 16;
     uint32 ju_count = 17;
-    string new_tile = 18;
 }
 
 message RecordNewRound {
@@ -4463,7 +4487,6 @@ message RecordNewRound {
     MuyuInfo muyu = 18;
     repeated OptionalOperationList operations = 19;
     uint32 ju_count = 20;
-    string new_tile = 21;
 
     message TingPai {
 
