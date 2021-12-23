@@ -613,7 +613,7 @@ class AIWrapper(sdk.GUIInterface, sdk.MajsoulHandler):
     # -------------------------Majsoul动作函数-------------------------
 
     def wait_for_a_while(self, delay=1.6):
-        # def wait_for_a_while(self, delay=2.0):
+        # def wait_for_a_while(self, delay=2.0):  等2秒黄花菜都凉了!
         # 如果读秒不足delay则强行等待一会儿
         dt = time.time() - self.lastSendTime
         if dt < delay:
@@ -630,7 +630,7 @@ class AIWrapper(sdk.GUIInterface, sdk.MajsoulHandler):
         if not self.isLiqi:
             self.forceTiaoGuo()
             try:
-                self.actionDiscardTile(tile)
+                self.actionDiscardTile(tile)   #ai犯蠢打了食替也不要紧,直接继续执行程序
             except Exception:
                 pass
 

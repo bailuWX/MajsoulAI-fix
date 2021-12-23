@@ -226,7 +226,7 @@ class GUIInterface:
 
     def actionDiscardTile(self, tile: str):
         time1 = time.time()
-        L = self._getHandTiles()
+        L = self._getHandTiles()    # 如果不小心扫描不到牌,多扫描几次,提高容错率
         if len(L) == 0:
             L = self._getHandTiles()
             time.sleep(0.2)
