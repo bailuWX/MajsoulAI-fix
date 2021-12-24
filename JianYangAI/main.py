@@ -43,7 +43,7 @@ def run_example_ai():
     user_id = "ID696E3BCC-hLHNE8Wf"      # the user ID that you got after having registered in tenhou.net
     user_name = "tst_tio"      # the user name that you have created while registration in tenhou.net
 
-    game_type = '41'      # '137' 南 '193' 东速高   '201'南速高    '41'四人南可以断19有红宝牌龟速出牌超级难度房间
+    game_type = '137'      # '137' 南 '193' 东速高   '201'南速高    '41'四人南可以断19有红宝牌龟速出牌超级难度房间
 
     logger_obj = Logger("log1", user_name)      # two arguments: id of your test epoch, user name
 
@@ -62,7 +62,7 @@ def run_jianyang_ai(drawer=None):
     user = "ID696E3BCC-hLHNE8Wf"  # the user ID that you got after having registered in tenhou.net
     user_name = "tst_tio"  # the user name that you have created while registration in tenhou.net
 
-    game_type = '41'  # '137' 南 '193' 东速高  '201'南速高  '41'四人南可以断19有红宝牌龟速出牌超级难度房间
+    game_type = '137'  # '137' 南 '193' 东速高  '201'南速高  '41'四人南可以断19有红宝牌龟速出牌超级难度房间
 
     logger_obj = Logger("log_jianyang_ai_1", user_name)  # two arguments: id of your test epoch, user name
 

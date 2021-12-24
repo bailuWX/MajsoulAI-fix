@@ -223,11 +223,11 @@ class AIWrapper(sdk.GUIInterface, sdk.MajsoulHandler):
 
     def on_JOIN(self, msg_dict):
         # step 3: init JianYangAI 四人东模式   '41'四人南可以断19有红宝牌龟速出牌超级难度房间
-        self.send(b'<GO type="41" lobby="0" gpid="EE26C0F2-327686F1"/>\x00')
+        self.send(b'<GO type="137" lobby="0" gpid="EE26C0F2-327686F1"/>\x00')
         # step 4: 用户信息
         self.send(('<UN n0="' + quote('tst-tio') + '" n1="' + quote('user1') + '" n2="' + quote('user2') + '" n3="' +
                    quote(
-                       'user3') + '" dan="19,11,11,11" rate="985.47,1648.57,1379.50,1500.00" sx="M,M,M,M"/>\x00').encode()) # 修改自己的段位为天凤10段!
+                       'user3') + '" dan="15,11,11,11" rate="985.47,1648.57,1379.50,1500.00" sx="M,M,M,M"/>\x00').encode()) # 修改自己的段位为天凤10段!
         # step 5: fake录像地址
         self.send(
             ('<TAIKYOKU oya="0" log="xxxxxxxxxxxx-xxxx-xxxx-xxxxxxxx"/>\x00').encode())
