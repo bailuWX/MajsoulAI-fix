@@ -222,12 +222,12 @@ class AIWrapper(sdk.GUIInterface, sdk.MajsoulHandler):
             b'<LN n="BgZ1Bdh1Xn1Ik" j="D1C2D2D2D1D12C3B13C1C2B1D12C4D8C1C1B3C2B1C1C1B1B" g="HA3Q1ME1E2BA1Bc4E8Lw3c1Dg12Gc4BQ12BQ4E8M1DM2Bj2Bg2S1t1q1M1BI2S"/>\x00')
 
     def on_JOIN(self, msg_dict):
-        # step 3: init JianYangAI 四人东模式   '41'四人南可以断19有红宝牌龟速出牌超级难度房间    141 禁止断一九
-        self.send(b'<GO type="141" lobby="0" gpid="EE26C0F2-327686F1"/>\x00')
+        # step 3: init JianYangAI 四人东模式   '41'四人南可以断19有红宝牌龟速出牌超级难度房间    173 禁止断一九 天凤级别
+        self.send(b'<GO type="173" lobby="0" gpid="EE26C0F2-327686F1"/>\x00')
         # step 4: 用户信息
         self.send(('<UN n0="' + quote('tst-tio') + '" n1="' + quote('user1') + '" n2="' + quote('user2') + '" n3="' +
                    quote(
-                       'user3') + '" dan="11,11,11,11" rate="985.47,1648.57,1379.50,1500.00" sx="M,M,M,M"/>\x00').encode()) # 修改自己的段位为天凤10段!
+                       'user3') + '" dan="15,15,15,15" rate="985.47,1648.57,1379.50,1500.00" sx="M,M,M,M"/>\x00').encode()) # 修改自己的段位为天凤10段!
         # step 5: fake录像地址
         self.send(
             ('<TAIKYOKU oya="0" log="xxxxxxxxxxxx-xxxx-xxxx-xxxxxxxx"/>\x00').encode())
