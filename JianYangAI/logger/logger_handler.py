@@ -34,16 +34,13 @@ class Logger:
         ch = logging.StreamHandler()
         ch.setLevel(logging.DEBUG)
         file_name = '{}_{}.log'.format(self.ai_id, datetime.datetime.now().strftime('%Y-%m-%d_%H_%M_%S'))
-        dir2 = "Z:\\logs"
-        if os.path.isdir(dir2):
-            fh = logging.FileHandler(dir2+"\\output.log")
-            # fh = logging.FileHandler(raw_dir + file_name)
-            fh.setLevel(logging.DEBUG)
-            formatter = logging.Formatter('%(asctime)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-            ch.setFormatter(formatter)
-            fh.setFormatter(formatter)
-            logger.addHandler(ch)
-            logger.addHandler(fh)
+        fh = logging.FileHandler(raw_dir + file_name)
+        fh.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('%(asctime)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+        ch.setFormatter(formatter)
+        fh.setFormatter(formatter)
+        logger.addHandler(ch)
+        logger.addHandler(fh)
         self.scores_path = logs_directory + "{}_result.txt".format(self.ai_id)
         self.rank_path = logs_directory + "ranks.txt"
 

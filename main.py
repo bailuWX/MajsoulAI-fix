@@ -49,7 +49,7 @@ class CardRecorder:
     def tenhou2majsoul(self, tile136=None, tile34=None):
         # (tile136,tile34) to tileStr
         if tile136 != None:
-            assert (tile34 == None)
+            # assert (tile34 == None)
             tile136 = int(tile136)
             if tile136 in (16, 52, 88):
                 # 红宝牌
@@ -57,7 +57,7 @@ class CardRecorder:
             else:
                 return str((tile136 // 4) % 9 + 1) + 'mpsz'[tile136 // 36]
         else:
-            assert (tile136 == None)
+            # assert (tile136 == None)
             tile34 = int(tile34)
             if tile34 > 34:
                 # 红宝牌
@@ -183,9 +183,9 @@ class AIWrapper(sdk.GUIInterface, sdk.MajsoulHandler):
                 f.write(timestr + '\r')
             # with open("Z:\\AiSiKaoShiJianLOg.log", "a") as f:
             #     f.write(timestr + '\r')
-            dir2 = "Z:\\logs"
-            if os.path.isdir(dir2):
-                copyfile("AiSiKaoShiJianLOg.log", dir2)
+            # dir2 = "Z:\\logs"
+            # if os.path.isdir(dir2):
+            #     copyfile("AiSiKaoShiJianLOg.log", dir2)
         except Exception:
             pass
 
