@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 import argparse
 import importlib
+import os
 import pickle
 import select
 import socket
 import time
 from enum import Enum
+from shutil import copyfile
 from subprocess import Popen, CREATE_NEW_CONSOLE
 from typing import Dict, List, Tuple
 from urllib.parse import quote
@@ -176,11 +178,14 @@ class AIWrapper(sdk.GUIInterface, sdk.MajsoulHandler):
                 self.on_Liqi(d)
 
     def writeTimeAitoLong(self, timestr: str):  # ai思考太长的记录到txt
-        with open("AiSiKaoShiJianLOg.log", "a") as f:
-            f.write(timestr + '\r')
         try:
-            with open("Z:\\AiSiKaoShiJianLOg.log", "a") as f:
+            with open("AiSiKaoShiJianLOg.log", "a") as f:
                 f.write(timestr + '\r')
+            # with open("Z:\\AiSiKaoShiJianLOg.log", "a") as f:
+            #     f.write(timestr + '\r')
+            dir2 = "Z:\\logs"
+            if os.path.isdir(dir2):
+                copyfile("AiSiKaoShiJianLOg.log", dir2)
         except Exception:
             pass
 
@@ -227,7 +232,7 @@ class AIWrapper(sdk.GUIInterface, sdk.MajsoulHandler):
         # step 4: 用户信息
         self.send(('<UN n0="' + quote('tst-tio') + '" n1="' + quote('user1') + '" n2="' + quote('user2') + '" n3="' +
                    quote(
-                       'user3') + '" dan="15,15,15,15" rate="985.47,1648.57,1379.50,1500.00" sx="M,M,M,M"/>\x00').encode()) # 修改自己的段位为天凤10段!
+                       'user3') + '" dan="15,15,15,15" rate="985.47,1648.57,1379.50,1500.00" sx="M,M,M,M"/>\x00').encode())  # 修改自己的段位为天凤10段!
         # step 5: fake录像地址
         self.send(
             ('<TAIKYOKU oya="0" log="xxxxxxxxxxxx-xxxx-xxxx-xxxxxxxx"/>\x00').encode())
@@ -355,7 +360,7 @@ class AIWrapper(sdk.GUIInterface, sdk.MajsoulHandler):
                 self.ten[tenhow_seat] = score // 100
 
                 msg_dict = {'opcode': 'REACH', 'who': tenhow_seat,
-                        'ten': ','.join(str(i) for i in self.ten), 'step': 2}
+                            'ten': ','.join(str(i) for i in self.ten), 'step': 2}
                 self.send(self.tenhouEncode(msg_dict))
             except Exception:
                 pass
@@ -450,7 +455,7 @@ class AIWrapper(sdk.GUIInterface, sdk.MajsoulHandler):
                     base = tile136s[0] // 4  # 最小牌tile34
                     called = tile136s.index(tile1)  # 哪张牌是别人的
                     base_and_called = base * 3 + called
-                    t4 = ((1, 2, 3), (0, 2, 3), (0, 1, 3),(0, 1, 2)).index((t1, t2, t3))
+                    t4 = ((1, 2, 3), (0, 2, 3), (0, 1, 3), (0, 1, 2)).index((t1, t2, t3))
                     m = (base_and_called << 9) + (t4 << 5) + (1 << 3) + from_whom
                     self.pengInfo[base] = m
                 except Exception:
@@ -633,7 +638,7 @@ class AIWrapper(sdk.GUIInterface, sdk.MajsoulHandler):
         if not self.isLiqi:
             self.forceTiaoGuo()
             try:
-                self.actionDiscardTile(tile)   #ai犯蠢打了食替也不要紧,直接继续执行程序
+                self.actionDiscardTile(tile)  # ai犯蠢打了食替也不要紧,直接继续执行程序
             except Exception:
                 pass
 

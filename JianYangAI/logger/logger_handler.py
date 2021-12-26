@@ -34,31 +34,19 @@ class Logger:
         ch = logging.StreamHandler()
         ch.setLevel(logging.DEBUG)
         file_name = '{}_{}.log'.format(self.ai_id, datetime.datetime.now().strftime('%Y-%m-%d_%H_%M_%S'))
-        fh = logging.FileHandler(raw_dir + file_name)
-        fh.setLevel(logging.DEBUG)
-        formatter = logging.Formatter('%(asctime)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-        ch.setFormatter(formatter)
-        fh.setFormatter(formatter)
-        logger.addHandler(ch)
-        logger.addHandler(fh)
+        dir2 = "Z:\\logs"
+        if os.path.isdir(dir2):
+            fh = logging.FileHandler(dir2+"\\output.log")
+            # fh = logging.FileHandler(raw_dir + file_name)
+            fh.setLevel(logging.DEBUG)
+            formatter = logging.Formatter('%(asctime)s: %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+            ch.setFormatter(formatter)
+            fh.setFormatter(formatter)
+            logger.addHandler(ch)
+            logger.addHandler(fh)
         self.scores_path = logs_directory + "{}_result.txt".format(self.ai_id)
         self.rank_path = logs_directory + "ranks.txt"
 
-        try:  # 复制一份最新的日志文件到我自己的log目录
-            dir2 = "Z:\\logs"
-            if os.path.isdir(dir2):
-                logger1 = logger
-                logger1.setLevel(logging.DEBUG)
-                ch1 = ch
-                ch1.setLevel(logging.DEBUG)
-                fh1 = logging.FileHandler(dir2+"\\output.log")
-                fh1.setLevel(logging.DEBUG)
-                ch1.setFormatter(formatter)
-                fh1.setFormatter(formatter)
-                logger1.addHandler(ch1)
-                logger1.addHandler(fh1)
-        except Exception:
-            pass
 
     def add_line(self, msg):
         msg = msg.encode('gbk', errors='replace').decode(encoding='gbk', errors='replace')
