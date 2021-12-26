@@ -466,5 +466,5 @@ class GUIInterface:
         x, y = np.int32(PosTransfer(Layout.menuButtons[level], self.M))
         pyautogui.click(x, y)
         time.sleep(2)
-        x, y = np.int32(PosTransfer(Layout.menuButtons[1], self.M))  # 四人东
+        x, y = np.int32(PosTransfer(Layout.menuButtons[0], self.M))  # 四人东
         pyautogui.click(x, y)

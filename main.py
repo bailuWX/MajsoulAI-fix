@@ -444,15 +444,17 @@ class AIWrapper(sdk.GUIInterface, sdk.MajsoulHandler):
                     (t2 << 5) + (t1 << 3) + (1 << 2) + from_whom
             elif type_ == 1:
                 # 碰
-                assert (tiles[0] == tiles[1] == tiles[2] or all(
-                    i[0] in ('0', '5') for i in tiles))
-                base = tile136s[0] // 4  # 最小牌tile34
-                called = tile136s.index(tile1)  # 哪张牌是别人的
-                base_and_called = base * 3 + called
-                t4 = ((1, 2, 3), (0, 2, 3), (0, 1, 3),
-                      (0, 1, 2)).index((t1, t2, t3))
-                m = (base_and_called << 9) + (t4 << 5) + (1 << 3) + from_whom
-                self.pengInfo[base] = m
+                # assert (tiles[0] == tiles[1] == tiles[2] or all(
+                #     i[0] in ('0', '5') for i in tiles))
+                try:
+                    base = tile136s[0] // 4  # 最小牌tile34
+                    called = tile136s.index(tile1)  # 哪张牌是别人的
+                    base_and_called = base * 3 + called
+                    t4 = ((1, 2, 3), (0, 2, 3), (0, 1, 3),(0, 1, 2)).index((t1, t2, t3))
+                    m = (base_and_called << 9) + (t4 << 5) + (1 << 3) + from_whom
+                    self.pengInfo[base] = m
+                except Exception:
+                    pass
         elif type_ == 2:
             # 明杠
             assert (len(tiles) == 4)
