@@ -415,7 +415,7 @@ class AIWrapper(sdk.GUIInterface, sdk.MajsoulHandler):
         assert (seat != froms[-1])
         lastDiscardStr = self.cardRecorder.tenhou2majsoul(
             tile136=self.lastDiscard)
-        assert (tiles[-1] == lastDiscardStr)
+        # assert (tiles[-1] == lastDiscardStr)
         tenhou_seat = (seat - self.mySeat) % 4
         from_whom = (froms[-1] - seat) % 4
 

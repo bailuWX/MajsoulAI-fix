@@ -110,7 +110,7 @@ class MajsoulHandler:
                         # 新增明宝牌
                         for dora_tile in self.doras:
                             doras.remove(dora_tile)
-                        assert (len(doras) == 1)
+                        # assert (len(doras) == 1)
                         new_dora = doras[0]
                         self.doras.append(new_dora)
                         self.newDora(new_dora)
