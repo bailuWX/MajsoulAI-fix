@@ -144,7 +144,7 @@ chrome_options = Options()
 
 chrome_options.add_argument('--proxy-server=127.0.0.1:8080')
 chrome_options.add_argument('--ignore-certificate-errors')
-chrome_options.add_argument('--disk-cache-dir=c:/log')
+# chrome_options.add_argument('--disk-cache-dir=c:/log')
 # chrome_options.add_argument('--disable-gpu')
 
 browser = webdriver.Chrome(chrome_options=chrome_options)
@@ -164,7 +164,10 @@ browser = webdriver.Chrome(chrome_options=chrome_options)
 #     # service_args=service_arg
 # )
 
+
 browser.set_window_size(1450, 900)
+browser.get("https://game.maj-soul.com/1/")
+
 
 
 
