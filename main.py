@@ -792,7 +792,7 @@ def MainLoop(isRemoteMode=False, remoteIP: str = None, level=None):
         inputs = [connection]
         outputs = []
 
-        if level != None and (not aiWrapper.isPlaying()):
+        if level != None:
             aiWrapper.actionBeginGame(level)
 
         print('waiting for the game to start')

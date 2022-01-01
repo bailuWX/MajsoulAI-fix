@@ -145,6 +145,10 @@ chrome_options = Options()
 chrome_options.add_argument('--proxy-server=127.0.0.1:8080')
 chrome_options.add_argument('--ignore-certificate-errors')
 chrome_options.add_argument('--disk-cache-dir=c:/log')
+chrome_options.add_argument('--disk-cache-size=50000000')
+chrome_options.add_argument('--dns-prefetch-disable')
+chrome_options.add_argument('--proxy-server=127.0.0.1:10809')
+
 # chrome_options.add_argument('--disable-gpu')
 
 browser = webdriver.Chrome(chrome_options=chrome_options)
