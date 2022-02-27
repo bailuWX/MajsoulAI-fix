@@ -3,7 +3,7 @@
 
  雀魂麻将ai,雀魂麻将助手,雀魂麻将机器学习
  
- 修改了大佬的代码, https://github.com/747929791/MajsoulAI
+ 基于大佬的项目, https://github.com/747929791/MajsoulAI
 
  大量修改了一些bug,因为大佬的代码很久都没更新了,无法正常启动
 
