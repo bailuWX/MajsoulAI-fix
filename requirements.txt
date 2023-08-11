@@ -1,4 +1,4 @@
-mitmproxy==6.0.2
+mitmproxy==7.0.3
 numpy==1.21.4
 opencv_python==4.5.4.60
 Pillow==8.4.0
